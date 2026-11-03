@@ -1,36 +1,179 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Otaku Hub - Apex Stack (S22)
 
-## Getting Started
+Site de démonstration d'une boutique de mangas et de jeux vidéo, construit avec Next.js, Auth.js et déployé sur Vercel.
 
-First, run the development server:
+Projet de groupe réalisé dans le cadre du livrable de Semaine 22 d'Akieni Academy, Cohorte 2.
+
+## Démo en ligne
+
+- URL de production : à compléter après le premier déploiement Vercel
+- Compte de test : à compléter (e-mail et mot de passe de démonstration)
+
+## Sommaire
+
+- [Otaku Hub - Apex Stack (S22)](#otaku-hub---apex-stack-s22)
+  - [Démo en ligne](#démo-en-ligne)
+  - [Sommaire](#sommaire)
+  - [Contexte](#contexte)
+  - [Fonctionnalités](#fonctionnalités)
+  - [Rendu](#rendu)
+  - [Stack technique](#stack-technique)
+  - [Démarrage rapide](#démarrage-rapide)
+  - [Variables d'environnement](#variables-denvironnement)
+  - [Structure du projet](#structure-du-projet)
+  - [Déploiement](#déploiement)
+  - [Audit Lighthouse](#audit-lighthouse)
+  - [Équipe](#équipe)
+  - [Workflow Git](#workflow-git)
+  - [Documentation du dépôt](#documentation-du-dépôt)
+  - [Liens : Live + Repository + README](#liens--live--repository--readme)
+
+## Contexte
+
+Otaku Hub est un site de démonstration qui permet de parcourir un catalogue de mangas et de jeux vidéo, de se connecter et de gérer son panier.
+
+C'est un exercice pratique, pas un vrai site de vente : il n'y a aucun paiement en ligne et aucune vraie commande. Le panier sert surtout à illustrer le rendu côté serveur d'une page qui dépend de l'utilisateur connecté.
+
+Le projet répond au livrable S22 : une application Next.js avec authentification, déployée sur Vercel, qui illustre les trois stratégies de rendu (SSG, ISR, SSR). Il est réalisé en une semaine, du 02 au 06 novembre 2026, avec une démo le vendredi pendant le stand-up.
+
+## Fonctionnalités
+
+Liste à confirmer, elle sera reprise dans les issues GitHub.
+
+- Authentification : connexion, déconnexion, session persistante
+- Catalogue des produits avec détail d'un produit
+- Panier de l'utilisateur connecté (sans paiement en ligne)
+- Profil de l'utilisateur connecté
+- Pages d'information (accueil, à propos, contact)
+
+## Rendu
+
+Chaque page utilise la stratégie de rendu la mieux adaptée à son contenu. Les pages exactes seront confirmées en fin de semaine.
+
+| Stratégie | Page prévue | Justification |
+|---|---|---|
+| SSG (génération statique) | Accueil, à propos, contact | Le contenu ne change presque jamais, la page est construite une fois au build et servie très vite. |
+| ISR (régénération incrémentale) | Catalogue des produits | Le catalogue évolue de temps en temps. La page est régénérée en arrière-plan (par exemple toutes les 60 secondes) sans refaire tout le build. |
+| SSR (rendu serveur) | Profil et panier | Le contenu dépend de l'utilisateur connecté, il doit être calculé à chaque requête. |
+
+## Stack technique
+
+| Domaine | Outil |
+|---|---|
+| Framework | Next.js (App Router) |
+| Langage | TypeScript |
+| Style | Tailwind CSS |
+| Authentification | Auth.js |
+| Base de données | PostgreSQL hébergé sur Neon |
+| Hébergement | Vercel |
+| Qualité | ESLint |
+| Versionnement | Git et GitHub |
+
+L'accès à la base de données (ORM ou requêtes directes) sera précisé ici dès que l'équipe l'aura choisi.
+
+## Démarrage rapide
+
+Prérequis : Node.js 20 ou plus récent, npm et Git.
 
 ```bash
+# Cloner le dépôt
+git clone https://github.com/KazeHolloway/s22-apex-stack-otaku-hub.git
+
+# Entrer dans le dossier
+cd s22-apex-stack-otaku-hub
+
+# Installer les dépendances
+npm install
+
+# Créer le fichier d'environnement local à partir du modèle
+cp .env.example .env.local
+
+# Lancer le serveur de développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+L'application est ensuite disponible sur http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Autres commandes utiles :
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Vérifier le code avec ESLint
+npm run lint
 
-## Learn More
+# Construire la version de production
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Variables d'environnement
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Le fichier `.env.example` liste les variables nécessaires, sans aucune valeur secrète. Le vrai fichier `.env.local` n'est jamais envoyé sur GitHub.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Sur Vercel, les variables se configurent dans Settings, puis Environment Variables.
 
-## Deploy on Vercel
+## Structure du projet
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Structure cible, elle sera ajustée au fil du développement.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+s22-apex-stack-otaku-hub/
+├── public/              # Fichiers statiques (images, favicon)
+├── src/
+│   ├── app/             # Pages et routes (App Router)
+│   ├── components/      # Composants réutilisables
+│   └── lib/             # Fonctions utilitaires et accès aux données
+├── .env.example         # Modèle des variables d'environnement
+├── CHANGELOG.md         # Historique des versions
+├── CODE_OF_CONDUCT.md   # Guide de conduite
+├── CONTRIBUTING.md      # Guide de contribution
+└── README.md
+```
+
+## Déploiement
+
+L'application est déployée sur Vercel, avec une base PostgreSQL sur Neon.
+
+Checklist de déploiement (à compléter par KazeHolloway) :
+
+- [ ] Projet Vercel relié au dépôt GitHub
+- [ ] Variables d'environnement configurées sur Vercel
+- [ ] Base Neon créée et connectée
+- [ ] URL de production stable notée dans ce README
+- [ ] Aucun secret dans le dépôt
+
+## Audit Lighthouse
+
+Objectif : au moins 80 en Performance et en Accessibility sur mobile.
+
+La capture de l'audit sera ajoutée dans le dépôt et liée ici.
+
+## Équipe
+
+Groupe 2 (Apex Stack), Akieni Academy, Cohorte 2.
+
+| Membre | Compte GitHub | Rôle S22 |
+|---|---|---|
+| MASSAMBA BOUESSO Christophe Darly (Kaze) | KazeHolloway | Déploiement, Admin Repo |
+| MBOUSSA Emmanuelito | à compléter | à définir |
+| OKANIA Patience Théo | à compléter | à définir |
+| MOUKOUANGA TOMBET Brissam Josué | à compléter | à définir |
+| NDENDE Christ | à compléter | à définir |
+
+## Workflow Git
+
+- Les branches `main` et `dev` sont protégées, aucune modification directe.
+- Chaque travail se fait sur une branche dédiée, puis passe par une pull request relue par un autre membre.
+- Les commits suivent la convention Conventional Commits.
+
+Le détail est dans [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Documentation du dépôt
+
+- [Guide de contribution](CONTRIBUTING.md)
+- [Guide de conduite](CODE_OF_CONDUCT.md)
+- [Historique des versions](CHANGELOG.md)
+
+## Liens : Live + Repository + README
+
+- [Lien live](à compléter)
+- [Lien vers le repository](https://github.com/KazeHolloway/s22-apex-stack-otaku-hub)
+- [Lien vers le README](https://kazeholloway.github.io/s22-apex-stack-otaku-hub/)
