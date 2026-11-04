@@ -129,5 +129,36 @@
   }
   html {
     @apply font-sans;
+    scrollbar-gutter: stable;
+  }
+
+  html.menu-open,
+  html.menu-open body {
+    overflow: hidden;
+  }
+
+  .page-bg,
+  .page-content {
+    transition: opacity 0.3s ease;
+  }
+
+  html.menu-open .page-bg,
+  html.menu-open .page-content {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  html.menu-open main {
+    pointer-events: none;
+    user-select: none;
+  }
+
+  html.menu-open canvas {
+    pointer-events: none;
+  }
+
+  html,
+  body {
+    overflow-x: clip;
   }
 }

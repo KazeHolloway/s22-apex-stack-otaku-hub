@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import Menu from "@/components/Menu";
+import Aurora from "@/components/Aurora";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +32,26 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${komikaAxis.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="relative min-h-full flex flex-col bg-white dark:bg-black">
+        <div className="page-bg pointer-events-none absolute inset-x-0 top-0 h-[600px] -z-10">
+          <Aurora
+            colorStops={["#ffffff", "#9aa0ad", "#ffffff"]}
+            amplitude={1}
+            blend={0.5}
+            height={0.45}
+            speed={1}
+            glow={0.6}
+            brightness={0.8}
+            lightMode
+          />
+        </div>
+
+        <Menu />
+
+        <main className="page-content flex flex-1 w-full flex-col">
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
