@@ -1,15 +1,17 @@
 import FlexCarousel from "@/components/FlexCarousel";
+import Marquee from "@/components/Marquee";
+import ScrollVelocity from "@/components/ScrollVelocity";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="pt-20 flex flex-col">
+    <div className="pt-20 flex flex-col gap-10">
       <section className="flex flex-col items-center gap-5 px-6 text-center">
         <span className="animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both text-sm font-medium uppercase tracking-[0.3em] text-zinc-500">
           Mangas · Jeux vidéo · Collectors
         </span>
 
-        <h1 className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 fill-mode-both font-komika text-5xl sm:text-7xl">
+        <h1 className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 fill-mode-both font-komika text-8xl sm:text-8xl">
           Apex Anime
         </h1>
 
@@ -34,6 +36,21 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      <div className="animate-in fade-in slide-in-from-bottom-8 duration-700 ">
+        <Marquee
+          duration={40}
+          items={[
+            { src: "/Dragon_Ball.svg", alt: "Dragon Ball", className: "h-20" },
+            { src: "/naruto_2.svg", alt: "Naruto", className: "h-50" },
+            {
+              src: "/Jujutsu_Kaisen.svg",
+              alt: "Jujutsu Kaisen",
+              className: "h-20",
+            },
+          ]}
+        />
+      </div>
 
       <div className="animate-in fade-in duration-1000 delay-500 fill-mode-both relative h-[700px] w-full">
         <div className="h-full">
