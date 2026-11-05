@@ -18,6 +18,7 @@ export const StaggeredMenu = ({
   isFixed = false,
   accentColor = "#5227FF",
   closeOnClickAway = true,
+  routeKey,
   onMenuOpen,
   onMenuClose,
 }) => {
@@ -377,6 +378,10 @@ export const StaggeredMenu = ({
   }, [playClose, animateIcon, animateColor, animateText, onMenuClose]);
 
   React.useEffect(() => {
+    closeMenu();
+  }, [routeKey, closeMenu]);
+
+  React.useEffect(() => {
     if (!closeOnClickAway || !open) return;
 
     const handleClickOutside = (event) => {
@@ -528,6 +533,7 @@ export const StaggeredMenu = ({
                       href={it.link}
                       aria-label={it.ariaLabel}
                       data-index={idx + 1}
+                      onClick={closeMenu}
                     >
                       <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
                         {it.label}

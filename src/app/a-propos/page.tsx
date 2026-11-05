@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import FlowingMenu, { type FlowingMenuItem } from "@/components/FlowingMenu";
 import InfoPageHero from "@/components/InfoPageHero";
 
@@ -63,7 +64,7 @@ const MEMBRES: FlowingMenuItem[] = EQUIPE.map(
 
 export default function APropos() {
   return (
-    <>
+    <ViewTransition enter="page-enter" exit="page-exit" default="none">
       <InfoPageHero
         title="À propos"
         intro="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look"
@@ -123,6 +124,6 @@ export default function APropos() {
           </div>
         </section>
       </div>
-    </>
+    </ViewTransition>
   );
 }

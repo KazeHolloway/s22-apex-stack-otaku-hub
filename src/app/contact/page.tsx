@@ -1,3 +1,4 @@
+import { ViewTransition } from "react";
 import { PRODUIT_UNE } from "@/lib/catalogue";
 import ContactForm from "@/components/ContactForm";
 import type { Metadata } from "next";
@@ -34,7 +35,7 @@ export default function Contact() {
   const produit = PRODUIT_UNE;
   const image = resoudreImageHero(produit.image);
   return (
-    <>
+    <ViewTransition enter="page-enter" exit="page-exit" default="none">
       <header className="relative h-svh overflow-hidden bg-[#dddee2] px-1 lg:px-[0.46296vw]">
         <figure className="absolute inset-0 z-0 max-h-full w-full mix-blend-darken">
           <Image
@@ -80,6 +81,6 @@ export default function Contact() {
           <ContactForm />
         </div>
       </section>
-    </>
+    </ViewTransition>
   );
 }
