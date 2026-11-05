@@ -9,8 +9,8 @@ erDiagram
 
   UTILISATEURS {
     uuid id PK
-    text email UK
     text nom
+    text email UK
     text mot_de_passe_hash
     timestamptz cree_le
   }
