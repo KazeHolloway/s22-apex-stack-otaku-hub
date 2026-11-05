@@ -33,7 +33,7 @@ export default function Menu() {
   useEffect(() => unlockPage, []);
   return (
     <div
-      className="absolute left-0 w-full overflow-hidden"
+      className="pointer-events-none absolute left-0 w-full overflow-hidden"
       style={{ height: "100vh" }}
     >
       <StaggeredMenu
