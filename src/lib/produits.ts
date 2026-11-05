@@ -1,4 +1,5 @@
 import { asc, eq } from "drizzle-orm";
+import { PRODUIT_UNE } from "./catalogue";
 import { db } from "./db";
 import { produits } from "./db/schema";
 import { estUuid } from "./uuid";
@@ -10,6 +11,22 @@ export type Produit = typeof produits.$inferSelect;
 export async function getProduits(): Promise<Produit[]> {
   const lignes = await db.select().from(produits).orderBy(asc(produits.titre));
   return lignes;
+}
+
+// Produit mis en avant sur la page d'accueil (premier item du catalogue)
+export async function getProduitUne(): Promise<Produit | null> {
+  if (!process.env.DATABASE_URL) return null;
+
+  try {
+    const lignes = await db
+      .select()
+      .from(produits)
+      .where(eq(produits.titre, PRODUIT_UNE.titre))
+      .limit(1);
+    return lignes[0] ?? null;
+  } catch {
+    return null;
+  }
 }
 
 // Détail d'un manga, ou null s'il n'existe pas
