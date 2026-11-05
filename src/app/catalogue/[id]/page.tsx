@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { ViewTransition, notFound } from "react";
 import { getProduitParId } from "@/lib/produits";
 import AddToCartButton from "@/components/AddToCartButton";
 
@@ -23,28 +23,30 @@ export default async function ProduitPage({ params }: Props) {
   if (!produit) notFound();
 
   return (
-    <section className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2 p-6 py-40">
-      <div className="relative aspect-[2/3] w-full overflow-hidden rounded">
-        <Image
-          src={"/hero_1.jpg"}
-          alt={`Couverture de ${produit.titre}`}
-          fill
-          priority
-          sizes="(min-width: 968px) 50vw, 100vw"
-          className="object-cover"
-        />
-      </div>
+    <ViewTransition enter="page-enter" exit="page-exit" default="none">
+      <section className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2 p-6 py-40">
+        <div className="relative aspect-[2/3] w-full overflow-hidden rounded">
+          <Image
+            src={"/hero_1.jpg"}
+            alt={`Couverture de ${produit.titre}`}
+            fill
+            priority
+            sizes="(min-width: 968px) 50vw, 100vw"
+            className="object-cover"
+          />
+        </div>
 
-      <div>
-        <h1 className="text-2xl font-bold">{produit.titre}</h1>
-        <p className="mt-1 text-sm text-gray-600">{produit.auteur}</p>
-        <p className="mt-4">{produit.description}</p>
-        <p className="mt-4 text-lg font-semibold">
-          {formaterPrix(produit.prixCentimes)}
-        </p>
+        <div>
+          <h1 className="text-2xl font-bold">{produit.titre}</h1>
+          <p className="mt-1 text-sm text-gray-600">{produit.auteur}</p>
+          <p className="mt-4">{produit.description}</p>
+          <p className="mt-4 text-lg font-semibold">
+            {formaterPrix(produit.prixCentimes)}
+          </p>
 
-        <AddToCartButton productId={produit.id} />
-      </div>
-    </section>
+          <AddToCartButton productId={produit.id} />
+        </div>
+      </section>
+    </ViewTransition>
   );
 }
