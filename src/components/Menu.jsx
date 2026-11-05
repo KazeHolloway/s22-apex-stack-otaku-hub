@@ -1,6 +1,7 @@
 "use client";
 
 import StaggeredMenu from "@/components/StaggeredMenu";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 const menuItems = [
@@ -27,6 +28,8 @@ const unlockPage = () => {
 };
 
 export default function Menu() {
+  const pathname = usePathname();
+
   useEffect(() => unlockPage, []);
   return (
     <div
@@ -44,6 +47,7 @@ export default function Menu() {
         changeMenuColorOnOpen
         colors={["#efefef", "#4CC9F0"]}
         accentColor="#4CC9F0"
+        routeKey={pathname}
         onMenuOpen={lockPage}
         onMenuClose={unlockPage}
       />
