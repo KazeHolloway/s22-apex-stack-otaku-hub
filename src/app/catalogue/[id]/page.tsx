@@ -12,7 +12,7 @@ type Props = { params: Promise<{ id: string }> };
 function formaterPrix(centimes: number): string {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",
-    currency: "EUR",
+    currency: "XAF",
   }).format(centimes / 100);
 }
 
