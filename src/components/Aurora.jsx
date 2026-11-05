@@ -275,7 +275,10 @@ const Aurora = ({
     dpr,
   };
   const settingsRef = useRef(settings);
-  settingsRef.current = settings;
+  // Met à jour la référence après chaque rendu, jamais pendant le rendu
+  useEffect(() => {
+    settingsRef.current = settings;
+  });
 
   useEffect(() => {
     const container = containerRef.current;
