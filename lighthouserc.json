@@ -6,7 +6,8 @@
       "url": [
         "http://localhost:3000/",
         "http://localhost:3000/a-propos",
-        "http://localhost:3000/contact"
+        "http://localhost:3000/contact",
+        "http://localhost:3000/catalogue"
       ],
       "numberOfRuns": 3
     },
