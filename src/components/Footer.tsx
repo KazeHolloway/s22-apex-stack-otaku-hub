@@ -59,7 +59,7 @@ export default function Footer() {
                 Otaku Hub
               </p>
               <p className="mt-2 text-sm text-black/60">
-                Mangas, jeux vidéo et collectors
+                Mangas et éditions collectors
               </p>
             </div>
           </div>
@@ -83,9 +83,8 @@ export default function Footer() {
           <div>
             <TitreColonne>Le projet</TitreColonne>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-black/70">
-              Otaku Hub est une boutique de démonstration réalisée dans le cadre
-              du livrable S22 d&apos;Akieni Academy. Un catalogue de mangas, des
-              fiches produits et un panier, sans paiement en ligne.
+          Otaku Hub est une boutique en ligne de mangas et
+          d&apos;éditions collectors. Un catalogue, des fiches produits et un panier.
             </p>
           </div>
 

@@ -8,7 +8,7 @@ export const dynamic = "force-static";
 export const metadata: Metadata = {
   title: "À propos · Otaku Hub",
   description:
-    "Découvrez Otaku Hub, la boutique de démonstration S22 d'Akieni Academy : catalogue de mangas, fiches produits et panier, sans paiement en ligne.",
+    "Découvrez Otaku Hub, la boutique en ligne de mangas et d'éditions collectors : catalogue, fiches produits et panier.",
 };
 
 const EQUIPE = [

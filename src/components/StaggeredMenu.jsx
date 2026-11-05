@@ -453,7 +453,7 @@ export const StaggeredMenu = ({
                 Otaku Hub
               </p>
               <p className="mt-2 text-sm text-black/60">
-                Mangas, jeux vidéo et collectors
+                Mangas et éditions collectors
               </p>
             </div>
           </div>
