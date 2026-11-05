@@ -39,6 +39,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
+    // Utilisé par le proxy : seuls les utilisateurs connectés sont autorisés
+    authorized({ auth }) {
+      return !!auth?.user;
+    },
     // Ajoute l'identifiant de l'utilisateur dans le jeton
     jwt({ token, user }) {
       if (user) token.id = user.id;
