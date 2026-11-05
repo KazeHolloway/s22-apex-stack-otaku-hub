@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { gsap } from "gsap";
-import Image from "next/image.js";
 
 export const StaggeredMenu = ({
   position = "right",
@@ -12,7 +12,6 @@ export const StaggeredMenu = ({
   displaySocials = true,
   displayItemNumbering = true,
   className,
-  logoUrl,
   menuButtonColor = "#fff",
   openMenuButtonColor = "#fff",
   changeMenuColorOnOpen = true,
@@ -439,17 +438,24 @@ export const StaggeredMenu = ({
           className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between p-[2em] bg-transparent pointer-events-none z-20"
           aria-label="Main navigation header"
         >
-          <div
-            className="sm-logo flex items-center select-none pointer-events-auto"
-            aria-label="Logo"
-          >
-            <Image
-              src={logoUrl}
-              alt="Logo"
-              className="sm-logo-img block h-8 w-auto object-contain"
-              width={500}
-              height={500}
+          <div className="flex items-center gap-4">
+            <img
+              alt="Logo Otaku Hub"
+              loading="lazy"
+              width="64"
+              height="64"
+              decoding="async"
+              className="h-14 w-14 sm:h-16 sm:w-16"
+              src="/logo.svg"
             />
+            <div>
+              <p className="font-komika text-2xl uppercase leading-none sm:text-3xl">
+                Otaku Hub
+              </p>
+              <p className="mt-2 text-sm text-black/60">
+                Mangas, jeux vidéo et collectors
+              </p>
+            </div>
           </div>
 
           <button
@@ -517,7 +523,7 @@ export const StaggeredMenu = ({
                     className="sm-panel-itemWrap relative overflow-hidden leading-none"
                     key={it.label + idx}
                   >
-                    <a
+                    <Link
                       className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
                       href={it.link}
                       aria-label={it.ariaLabel}
@@ -526,7 +532,7 @@ export const StaggeredMenu = ({
                       <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
                         {it.label}
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 ))
               ) : (
@@ -594,7 +600,7 @@ export const StaggeredMenu = ({
 .sm-scope .sm-panel-inner { flex: 1; display: flex; flex-direction: column; gap: 1.25rem; }
 .sm-scope .sm-panel-itemWrap { position: relative; overflow: hidden; line-height: 1; }
 .sm-scope .sm-panel-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
-.sm-scope .sm-panel-item { position: relative; color: #000; font-weight: 600; font-size: 4rem; cursor: pointer; line-height: 1; letter-spacing: -2px; text-transform: uppercase; transition: background 0.25s, color 0.25s; display: inline-block; text-decoration: none; padding-right: 1.4em; }
+.sm-scope .sm-panel-item { position: relative; color: #000; font-weight: 600; font-size: 4rem; white-space: nowrap; cursor: pointer; line-height: 1; letter-spacing: -2px; text-transform: uppercase; transition: background 0.25s, color 0.25s; display: inline-block; text-decoration: none; padding-right: 1.4em; }
 .sm-scope .sm-panel-itemLabel { display: inline-block; will-change: transform; transform-origin: 50% 100%; }
 .sm-scope .sm-panel-item:hover { color: var(--sm-accent, #ff0000); }
 .sm-scope .sm-panel-list[data-numbering] { counter-reset: smItem; }

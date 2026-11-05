@@ -4,9 +4,9 @@ import StaggeredMenu from "@/components/StaggeredMenu";
 import { useEffect } from "react";
 
 const menuItems = [
-  { label: "Home", ariaLabel: "Go to home page", link: "/" },
-  { label: "About", ariaLabel: "Learn about us", link: "/about" },
-  { label: "Services", ariaLabel: "View our services", link: "/services" },
+  { label: "Accueil", ariaLabel: "Go to home page", link: "/" },
+  { label: "À propos", ariaLabel: "Learn about us", link: "/about" },
+  { label: "Catalogue", ariaLabel: "View our catalogue", link: "/catalogue" },
   { label: "Contact", ariaLabel: "Get in touch", link: "/contact" },
 ];
 
@@ -43,7 +43,6 @@ export default function Menu() {
         openMenuButtonColor="#000"
         changeMenuColorOnOpen
         colors={["#efefef", "#4CC9F0"]}
-        logoUrl="/logo.svg"
         accentColor="#4CC9F0"
         onMenuOpen={lockPage}
         onMenuClose={unlockPage}

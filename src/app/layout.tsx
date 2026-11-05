@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Menu from "@/components/Menu";
 import Aurora from "@/components/Aurora";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +33,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${komikaAxis.variable} h-full antialiased`}
     >
-      <body className="relative min-h-full flex flex-col bg-white dark:bg-black">
+      <body
+        id="top"
+        className="relative min-h-full flex flex-col bg-white dark:bg-black"
+      >
         <div className="page-bg pointer-events-none absolute inset-x-0 top-0 h-[600px] -z-10">
           <Aurora
             colorStops={["#ffffff", "#9aa0ad", "#ffffff"]}
@@ -51,6 +55,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main className="page-content flex flex-1 w-full flex-col">
           {children}
         </main>
+
+        <Footer />
       </body>
     </html>
   );
