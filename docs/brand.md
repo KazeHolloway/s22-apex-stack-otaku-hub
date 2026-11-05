@@ -44,5 +44,5 @@ Les images viennent de l'univers manga et anime : couvertures, logos de séries 
 
 1. Les tokens de shadcn restent neutres alors que les pages écrivent les couleurs directement.
 2. Un thème sombre existe dans les tokens, mais les pages utilisent surtout le fond clair.
-3. Quelques libellés restent en anglais dans le menu et dans un bouton de démonstration.
+3. Quelques libellés restent en anglais dans le menu et dans un bouton d'exemple.
 4. Le titre de page par défaut est encore « Create Next App ».
