@@ -7,7 +7,7 @@ export const revalidate = 60;
 function formaterPrix(centimes: number): string {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",
-    currency: "CFA",
+    currency: "EUR",
   }).format(centimes / 100);
 }
 
