@@ -23,7 +23,7 @@ export default async function ProduitPage({ params }: Props) {
   if (!produit) notFound();
 
   return (
-    <section className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2 p-6 pt-40">
+    <section className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2 p-6 py-40">
       <div className="relative aspect-[2/3] w-full overflow-hidden rounded">
         <Image
           src={"/hero_1.jpg"}
