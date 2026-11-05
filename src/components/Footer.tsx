@@ -5,7 +5,8 @@ import type { ReactNode } from "react";
 const NAVIGATION = [
   { label: "Accueil", href: "/" },
   { label: "Mangas", href: "/mangas" },
-  { label: "À propos", href: "/about" },
+  { label: "À propos", href: "/a-propos" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const LIENS_EXTERNES = [
