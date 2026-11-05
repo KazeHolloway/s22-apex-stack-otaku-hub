@@ -1,7 +1,6 @@
 import { existsSync } from "node:fs";
 import path from "node:path";
 import Image from "next/image";
-import Link from "next/link";
 
 type ProduitHero = {
   titre: string;
@@ -10,8 +9,6 @@ type ProduitHero = {
   prixCentimes: number;
   image: string;
 };
-
-const CATEGORIES = ["Mangas", "Jeux vidéo", "Collectors", "Figurines"];
 
 function resoudreImageHero(image: string) {
   const fallback = "/piece_4.jpg";
@@ -54,13 +51,13 @@ export default function HeroUne({ produit }: { produit: ProduitHero }) {
 
       <div className="absolute bottom-0 left-0 z-20 flex h-[67%] w-[97.94872vw] flex-col items-start gap-6 p-4 text-[#f8f8f8] lg:gap-8">
         <div className="">
-          <h1 className="mt-3 text-[clamp(3.5rem,10vw,8rem)] leading-[0.8] font-bold uppercase">
+          <h1 className="mt-3 text-[clamp(2.25rem,10vw,8rem)] leading-[0.9] font-bold uppercase">
             <span className="block">{titrePrincipal}</span>
             {sousTitre && <span className="block">{sousTitre}</span>}
           </h1>
         </div>
 
-        <p className="max-w-xl text-base leading-relaxed text-[#f8f8f8]/90 sm:text-lg">
+        <p className="max-w-xl text-sm leading-relaxed text-[#f8f8f8]/90 sm:text-base lg:text-lg">
           {produit.description}
         </p>
       </div>
