@@ -4,7 +4,10 @@ import type { ReactNode } from "react";
 
 const NAVIGATION = [
   { label: "Accueil", href: "/" },
-  { label: "Mangas", href: "/mangas" },
+  { label: "Catalogue", href: "/catalogue" },
+  { label: "Panier", href: "/panier" },
+  { label: "Profil", href: "/profil" },
+  { label: "Connexion", href: "/connexion" },
   { label: "À propos", href: "/a-propos" },
   { label: "Contact", href: "/contact" },
 ];
@@ -65,7 +68,7 @@ export default function Footer() {
           </div>
 
           <Link
-            href="/mangas"
+            href="/catalogue"
             className="group inline-flex items-center gap-4 self-start lg:self-auto"
           >
             <span className="relative text-lg font-medium uppercase tracking-[0.15em] sm:text-2xl">
