@@ -8,6 +8,9 @@ const menuItems = [
   { label: "Accueil", ariaLabel: "Go to home page", link: "/" },
   { label: "À propos", ariaLabel: "Learn about us", link: "/a-propos" },
   { label: "Catalogue", ariaLabel: "View our catalogue", link: "/catalogue" },
+  { label: "Panier", ariaLabel: "View your cart", link: "/panier" },
+  { label: "Profil", ariaLabel: "View your profile", link: "/profil" },
+  { label: "Connexion", ariaLabel: "Sign in", link: "/connexion" },
   { label: "Contact", ariaLabel: "Get in touch", link: "/contact" },
 ];
 
