@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type FormEvent } from "react";
 import { useActionState } from "react";
 import { connecter } from "@/app/connexion/actions";
 

@@ -2,6 +2,7 @@
 
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { gsap } from "gsap";
 
 export const StaggeredMenu = ({
@@ -191,7 +192,7 @@ export const StaggeredMenu = ({
 
     openTlRef.current = tl;
     return tl;
-  }, []);
+  }, [position]);
 
   const playOpen = useCallback(() => {
     if (busyRef.current) return;
@@ -444,12 +445,10 @@ export const StaggeredMenu = ({
           aria-label="Main navigation header"
         >
           <div className="flex items-center gap-4">
-            <img
+            <Image
               alt="Logo Otaku Hub"
-              loading="lazy"
-              width="64"
-              height="64"
-              decoding="async"
+              width={64}
+              height={64}
               className="h-14 w-14 sm:h-16 sm:w-16"
               src="/logo.svg"
             />
