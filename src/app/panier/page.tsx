@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
@@ -10,11 +9,11 @@ export const metadata = {
   description: "Consultez et gérez votre panier Otaku Hub.",
 };
 
-function formaterPrix(prixCentimes: number): string {
+function formaterPrix(centimes: number): string {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",
-    currency: "EUR",
-  }).format(prixCentimes / 100);
+    currency: "XAF",
+  }).format(centimes);
 }
 
 export default async function PanierPage() {
@@ -33,7 +32,7 @@ export default async function PanierPage() {
   // 4. Calculer le montant total
   const totalCentimes = articles.reduce(
     (total, article) => total + article.prixCentimes * article.quantite,
-    0
+    0,
   );
 
   // 5. Afficher la page
@@ -44,9 +43,7 @@ export default async function PanierPage() {
           Otaku Hub
         </p>
 
-        <h1 className="mt-2 text-3xl font-bold text-gray-900">
-          Mon panier
-        </h1>
+        <h1 className="mt-2 text-3xl font-bold text-gray-900">Mon panier</h1>
 
         <p className="mt-2 text-gray-600">
           Retrouvez les mangas que vous souhaitez acheter.
@@ -88,9 +85,7 @@ export default async function PanierPage() {
                       {article.titre}
                     </h2>
 
-                    <p className="text-sm text-gray-500">
-                      {article.auteur}
-                    </p>
+                    <p className="text-sm text-gray-500">{article.auteur}</p>
 
                     <p className="mt-2 text-sm text-gray-600">
                       Quantité : {article.quantite}
@@ -98,9 +93,7 @@ export default async function PanierPage() {
                   </div>
 
                   <p className="font-semibold text-gray-900">
-                    {formaterPrix(
-                      article.prixCentimes * article.quantite
-                    )}
+                    {formaterPrix(article.prixCentimes * article.quantite)}
                   </p>
                 </div>
 
@@ -124,22 +117,15 @@ export default async function PanierPage() {
 
           {/* RÉCAPITULATIF DU PANIER */}
           <aside className="h-fit rounded-xl border border-gray-200 bg-white p-6">
-            <h2 className="text-xl font-bold text-gray-900">
-              Récapitulatif
-            </h2>
+            <h2 className="text-xl font-bold text-gray-900">Récapitulatif</h2>
 
             <p className="mt-4 text-gray-600">
               Nombre d&apos;articles :{" "}
-              {articles.reduce(
-                (total, article) => total + article.quantite,
-                0
-              )}
+              {articles.reduce((total, article) => total + article.quantite, 0)}
             </p>
 
             <div className="mt-4 flex justify-between border-t border-gray-200 pt-4">
-              <span className="font-semibold text-gray-900">
-                Total
-              </span>
+              <span className="font-semibold text-gray-900">Total</span>
 
               <span className="font-bold text-gray-900">
                 {formaterPrix(totalCentimes)}
