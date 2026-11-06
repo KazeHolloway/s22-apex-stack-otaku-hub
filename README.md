@@ -6,11 +6,13 @@ Projet de groupe réalisé dans le cadre du livrable de Semaine 22 d'Akieni Acad
 
 ## Démo en ligne
 
-- Compte de test : `demo@otaku-hub.test` / `Demo1234!`
-
 - URL de production : [Otaku Hub](https://otaku-hub-apex.vercel.app/)
 - Route de santé : [/api/health](https://otaku-hub-apex.vercel.app/api/health)
+- Compte de test : `demo@otaku-hub.test` / `Demo1234!`
 
+QR code vers la démo en ligne
+
+![QR code vers la démo en ligne](docs/images/qrcode-otaku-stack.png)
 
 ## Sommaire
 
