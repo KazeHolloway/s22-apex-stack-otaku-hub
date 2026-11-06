@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Menu from "@/components/Menu";
-import Aurora from "@/components/Aurora";
 import Footer from "@/components/Footer";
 
 const geistSans = Geist({
@@ -23,6 +22,7 @@ const komikaAxis = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://otaku-hub-apex.vercel.app"),
   applicationName: "Otaku Hub",
   title: {
     default: "Otaku Hub | Mangas et éditions collectors",
@@ -81,18 +81,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         id="top"
         className="relative min-h-full flex flex-col bg-white dark:bg-black"
       >
-        <div className="page-bg pointer-events-none absolute inset-x-0 top-0 h-[600px] -z-10">
-          <Aurora
-            colorStops={["#ffffff", "#9aa0ad", "#ffffff"]}
-            amplitude={1}
-            blend={0.5}
-            height={0.45}
-            speed={1}
-            glow={0.6}
-            brightness={0.8}
-            lightMode
-          />
-        </div>
+        <div
+          aria-hidden="true"
+          className="page-bg pointer-events-none absolute inset-x-0 top-0 h-[600px] -z-10"
+        />
 
         <Menu />
 

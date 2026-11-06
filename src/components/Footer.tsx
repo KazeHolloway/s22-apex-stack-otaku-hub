@@ -40,7 +40,7 @@ const ArrowRight = ({ className }: { className?: string }) => (
 );
 
 const TitreColonne = ({ children }: { children: ReactNode }) => (
-  <h2 className="text-xs font-medium uppercase tracking-[0.25em] text-black/50">
+  <h2 className="text-xs font-medium uppercase tracking-[0.25em] text-black/70">
     {children}
   </h2>
 );
