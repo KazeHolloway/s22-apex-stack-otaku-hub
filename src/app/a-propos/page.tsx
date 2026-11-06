@@ -15,33 +15,33 @@ export const metadata: Metadata = {
 const EQUIPE = [
   {
     nom: "MASSAMBA BOUESSO Christophe Darly",
-    pseudo: "Kaze",
+    pseudo: "KazeHolloway",
     role: "Déploiement, admin repo",
     label: "Christophe",
   },
   {
     nom: "MBOUSSA Emmanuelito",
-    pseudo: "—",
-    role: "À définir",
+    pseudo: "elyseeMB",
+    role: "Rendu et performance, lead",
     label: "Emmanuelito",
   },
   {
+    nom: "KOY Jude Airich",
+    pseudo: "Deekskn",
+    role: "Authentification",
+    label: "Jude",
+  },
+  {
     nom: "OKANIA Patience Théo",
-    pseudo: "—",
-    role: "À définir",
+    pseudo: "theos1401",
+    role: "Fonctionnalité 1",
     label: "Patience",
   },
   {
     nom: "MOUKOUANGA TOMBET Brissam Josué",
-    pseudo: "—",
-    role: "À définir",
+    pseudo: "BrissamDev",
+    role: "Fonctionnalité 2",
     label: "Brissam",
-  },
-  {
-    nom: "NDENDE Christ",
-    pseudo: "—",
-    role: "À définir",
-    label: "Christ",
   },
 ];
 
@@ -67,7 +67,7 @@ export default function APropos() {
     <ViewTransition enter="page-enter" exit="page-exit" default="none">
       <InfoPageHero
         title="À propos"
-        intro="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look"
+        intro="Otaku Hub est un site de démonstration de vente de mangas, réalisé par le groupe Apex Stack pour le livrable S22 de l'Akieni Academy. Il propose un catalogue, des fiches produits, un panier et un espace de connexion. Aucun paiement n'est réel."
       />
 
       <div className="bg-white text-black">
@@ -75,7 +75,7 @@ export default function APropos() {
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <h2 className="mt-4 text-[clamp(2.25rem,5vw,4rem)] leading-[0.9] font-bold uppercase">
-                Apex Stack
+                Équipe Apex Stack
               </h2>
             </div>
           </div>
