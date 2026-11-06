@@ -39,7 +39,7 @@ export default function Contact() {
       <header className="relative h-svh overflow-hidden bg-[#dddee2] px-1 lg:px-[0.46296vw]">
         <figure className="absolute inset-0 z-0 max-h-full w-full mix-blend-darken">
           <Image
-            src={image}
+            src={"/hero_5.jpg"}
             alt={produit.titre}
             fill
             priority

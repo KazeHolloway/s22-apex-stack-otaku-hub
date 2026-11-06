@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ViewTransition } from "react";
+import Image from "next/image";
 import FlowingMenu, { type FlowingMenuItem } from "@/components/FlowingMenu";
-import InfoPageHero from "@/components/InfoPageHero";
 
 export const dynamic = "force-static";
 
@@ -65,10 +65,35 @@ const MEMBRES: FlowingMenuItem[] = EQUIPE.map(
 export default function APropos() {
   return (
     <ViewTransition enter="page-enter" exit="page-exit" default="none">
-      <InfoPageHero
-        title="À propos"
-        intro="Otaku Hub est un site de démonstration de vente de mangas, réalisé par le groupe Apex Stack pour le livrable S22 de l'Akieni Academy. Il propose un catalogue, des fiches produits, un panier et un espace de connexion. Aucun paiement n'est réel."
-      />
+      <header className="relative h-svh overflow-hidden bg-[#dddee2] px-1 lg:px-[0.46296vw]">
+        <figure className="absolute inset-0 z-0 max-h-full w-full mix-blend-darken">
+          <Image
+            src="/hero_7.jpg"
+            alt="Illustration de l'univers Otaku Hub"
+            fill
+            priority
+            sizes="(max-width: 268px) 100vw, 72vw"
+            className="object-cover"
+          />
+        </figure>
+
+        <span
+          aria-hidden="true"
+          className="absolute bottom-0 right-0 z-10 h-[67%] w-[97.94872vw] bg-[#4cc9f0] mix-blend-multiply"
+        />
+
+        <div className="absolute bottom-0 left-8 z-20 flex h-[67%] w-[97.94872vw] flex-col items-start gap-6 p-4 text-[#f8f8f8] lg:gap-8">
+          <h1 className="mt-3 text-[clamp(3.5rem,10vw,8rem)] leading-[0.8] font-bold uppercase">
+            À propos
+          </h1>
+          <p className="max-w-xl text-base leading-relaxed text-[#f8f8f8]/90 sm:text-lg">
+            Otaku Hub est un site de démonstration de vente de mangas, réalisé
+            par le groupe Apex Stack pour le livrable S22 de l&apos;Akieni
+            Academy. Il propose un catalogue, des fiches produits, un panier et
+            un espace de connexion. Aucun paiement n&apos;est réel.
+          </p>
+        </div>
+      </header>
 
       <div className="bg-white text-black">
         <section className="px-4 pt-16 sm:px-6 lg:px-[0.46296vw] lg:pt-24">
