@@ -27,8 +27,8 @@ export default async function ProduitPage({ params }: Props) {
       <section className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2 p-6 py-40">
         <div className="relative aspect-[2/3] w-full overflow-hidden rounded">
           <Image
-            src={"/hero_1.jpg"}
-            alt={`Couverture de ${produit.titre}`}
+            src={produit?.image ?? ""}
+            alt={`Couverture de ${produit?.titre}`}
             fill
             priority
             sizes="(min-width: 968px) 50vw, 100vw"
