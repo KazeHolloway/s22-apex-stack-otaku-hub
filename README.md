@@ -1,10 +1,12 @@
 # Otaku Hub - Apex Stack (S22)
 
-Site de démonstration d'une boutique de mangas et de jeux vidéo, construit avec Next.js, Auth.js et déployé sur Vercel.
+Site de démonstration d'une boutique de mangas, construit avec Next.js, Auth.js et déployé sur Vercel.
 
 Projet de groupe réalisé dans le cadre du livrable de Semaine 22 d'Akieni Academy, Cohorte 2.
 
 ## Démo en ligne
+
+- Compte de test : `demo@otaku-hub.test` / `Demo1234!`
 
 - URL de production : [Otaku Hub](https://otaku-hub-apex.vercel.app/)
 - Route de santé : [/api/health](https://otaku-hub-apex.vercel.app/api/health)
@@ -25,6 +27,7 @@ Projet de groupe réalisé dans le cadre du livrable de Semaine 22 d'Akieni Acad
     - [Organisation des dossiers](#organisation-des-dossiers)
   - [Déploiement](#déploiement)
   - [Audit Lighthouse](#audit-lighthouse)
+  - [Limites connues et pistes d'amélioration](#limites-connues-et-pistes-damélioration)
   - [Équipe](#équipe)
   - [Workflow Git](#workflow-git)
   - [Documentation du dépôt](#documentation-du-dépôt)
@@ -59,6 +62,8 @@ Chaque page utilise la stratégie adaptée à son contenu et à ses données.
 | SSG (génération statique) | Accueil, à propos, contact | Ces pages sont pré-générées au build, car leur contenu est public et change peu. |
 | ISR (régénération incrémentale) | Catalogue et fiches produit | Les données viennent du catalogue en base. Les pages sont régénérées au plus toutes les 60 secondes pour tenir compte des changements sans refaire tout le build. |
 | SSR (rendu serveur) | Panier, profil, connexion, inscription | Ces pages vérifient la session et adaptent leur contenu ou leur redirection à l'utilisateur connecté. |
+
+La protection des routes `/panier` et `/profil` est assurée par `src/proxy.ts` (le proxy est le nouveau nom du middleware dans Next.js 16).
 
 Les routes API ne sont pas des pages et ne sont donc pas incluses dans ce tableau.
 
@@ -260,6 +265,24 @@ L'application fait l'objet d'un contrôle de qualité avec Lighthouse.
 Les résultats détaillés et les captures d'écran de l'audit seront ajoutés à cette section après validation de la dernière version de production.
 
 Configuration de l'audit : `lighthouserc.json` et `.github/workflows/lighthouse.yml`.
+
+## Limites connues et pistes d'amélioration
+
+Limites actuelles :
+- Aucun paiement ni commande réelle, c'est un site de démonstration.
+- Le formulaire de contact n'enregistre rien.
+- Les prix sont stockés en centimes d'euro, leur affichage en FCFA est à corriger.
+- Pas de récupération de mot de passe, pas d'interface d'administration, pas de tests automatisés.
+- Le mot de passe du compte de démonstration est public et la base est partagée.
+
+Pistes d'amélioration :
+- Inscription : bouton pour afficher ou masquer le mot de passe, champ de confirmation, redirection vers la page de connexion.
+- Notifications (toasts) à l'ajout et au retrait d'un article du panier.
+- Responsive : plus de points de rupture pour tablettes et petits téléphones (menu, logo, marges).
+- Bouton Menu : icône burger qui se transforme en croix.
+- Mode clair et sombre.
+- Conversion correcte euro vers FCFA.
+- Correction de l'avertissement `metadataBase` et suppression de l'option `ignoreBuildErrors`.
 
 ## Équipe
 
