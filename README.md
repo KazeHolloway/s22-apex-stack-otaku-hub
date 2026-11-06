@@ -48,13 +48,15 @@ Liste à confirmer, elle sera reprise dans les issues GitHub.
 
 ## Rendu
 
-Chaque page utilise la stratégie de rendu la mieux adaptée à son contenu. Les pages exactes seront confirmées en fin de semaine.
+Chaque page utilise la stratégie adaptée à son contenu et à ses données.
 
-| Stratégie | Page prévue | Justification |
+| Stratégie | Pages | Justification |
 |---|---|---|
-| SSG (génération statique) | Accueil, à propos, contact | Le contenu ne change presque jamais, la page est construite une fois au build et servie très vite. |
-| ISR (régénération incrémentale) | Catalogue des produits | Le catalogue évolue de temps en temps. La page est régénérée en arrière-plan (par exemple toutes les 60 secondes) sans refaire tout le build. |
-| SSR (rendu serveur) | Profil et panier | Le contenu dépend de l'utilisateur connecté, il doit être calculé à chaque requête. |
+| SSG (génération statique) | Accueil, à propos, contact | Ces pages sont pré-générées au build, car leur contenu est public et change peu. |
+| ISR (régénération incrémentale) | Catalogue et fiches produit | Les données viennent du catalogue en base. Les pages sont régénérées au plus toutes les 60 secondes pour tenir compte des changements sans refaire tout le build. |
+| SSR (rendu serveur) | Panier, profil, connexion, inscription | Ces pages vérifient la session et adaptent leur contenu ou leur redirection à l'utilisateur connecté. |
+
+Les routes API ne sont pas des pages et ne sont donc pas incluses dans ce tableau.
 
 ## Stack technique
 
