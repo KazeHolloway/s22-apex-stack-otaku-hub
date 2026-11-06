@@ -6,8 +6,9 @@ Projet de groupe réalisé dans le cadre du livrable de Semaine 22 d'Akieni Acad
 
 ## Démo en ligne
 
-- URL de production : à compléter après le premier déploiement Vercel
-- Compte de test : à compléter (e-mail et mot de passe de démonstration)
+- URL de production : [Otaku Hub](https://otaku-hub-apex.vercel.app/)
+- Route de santé : [/api/health](https://otaku-hub-apex.vercel.app/api/health)
+
 
 ## Sommaire
 
@@ -21,6 +22,7 @@ Projet de groupe réalisé dans le cadre du livrable de Semaine 22 d'Akieni Acad
   - [Démarrage rapide](#démarrage-rapide)
   - [Variables d'environnement](#variables-denvironnement)
   - [Structure du projet](#structure-du-projet)
+    - [Organisation des dossiers](#organisation-des-dossiers)
   - [Déploiement](#déploiement)
   - [Audit Lighthouse](#audit-lighthouse)
   - [Équipe](#équipe)
@@ -30,21 +32,23 @@ Projet de groupe réalisé dans le cadre du livrable de Semaine 22 d'Akieni Acad
 
 ## Contexte
 
-Otaku Hub est un site de démonstration qui permet de parcourir un catalogue de mangas et de jeux vidéo, de se connecter et de gérer son panier.
+Otaku Hub est une boutique en ligne de démonstration dédiée aux mangas et aux éditions collectors. L'application permet aux visiteurs de découvrir un catalogue de produits, de consulter leurs fiches détaillées et de créer un compte pour accéder aux fonctionnalités personnalisées.
 
 C'est un exercice pratique, pas un vrai site de vente : il n'y a aucun paiement en ligne et aucune vraie commande. Le panier sert surtout à illustrer le rendu côté serveur d'une page qui dépend de l'utilisateur connecté.
 
-Le projet répond au livrable S22 : une application Next.js avec authentification, déployée sur Vercel, qui illustre les trois stratégies de rendu (SSG, ISR, SSR). Il est réalisé en une semaine, du 02 au 06 novembre 2026, avec une démo le vendredi pendant le stand-up.
+Le projet répond au livrable S22 : une application Next.js avec authentification, déployée sur Vercel, qui illustre les trois stratégies de rendu (SSG, ISR, SSR). Il est réalisé en une semaine, du 02 au 06 novembre 2026.
 
 ## Fonctionnalités
 
-Liste à confirmer, elle sera reprise dans les issues GitHub.
+- **Catalogue :** consultation des mangas disponibles et affichage des informations des produits.
+- **Fiches produits :** consultation des détails d'un manga, notamment son titre, son auteur, sa description, son prix et sa couverture.
+- **Authentification :** création de compte, connexion et déconnexion avec Auth.js.
+- **Panier :** ajout de produits et gestion du panier associé à l'utilisateur connecté.
+- **Profil :** accès à l'espace personnel de l'utilisateur authentifié.
+- **Pages institutionnelles :** accueil, présentation du projet et formulaire de contact.
+- **API :** routes dédiées à l'authentification, au contact et à la vérification de l'état de l'application.
 
-- Authentification : connexion, déconnexion, session persistante
-- Catalogue des produits avec détail d'un produit
-- Panier de l'utilisateur connecté (sans paiement en ligne)
-- Profil de l'utilisateur connecté
-- Pages d'information (accueil, à propos, contact)
+Le projet ne propose ni paiement en ligne ni traitement de commandes réelles.
 
 ## Rendu
 
@@ -60,18 +64,24 @@ Les routes API ne sont pas des pages et ne sont donc pas incluses dans ce tablea
 
 ## Stack technique
 
-| Domaine | Outil |
+| Domaine | Technologies |
 |---|---|
-| Framework | Next.js (App Router) |
-| Langage | TypeScript |
-| Style | Tailwind CSS |
-| Authentification | Auth.js |
-| Base de données | PostgreSQL hébergé sur Neon |
+| Framework | Next.js 16 (App Router) |
+| Bibliothèque UI | React 19 |
+| Langage | TypeScript 5 |
+| Style | Tailwind CSS 4 |
+| Composants UI | shadcn/ui, Base UI |
+| Icônes | Lucide React, Hugeicons |
+| Authentification | Auth.js (NextAuth.js v5) |
+| Sécurité des mots de passe | bcryptjs |
+| Base de données | PostgreSQL sur Neon |
+| ORM | Drizzle ORM |
+| Animations | GSAP, Motion |
+| Effets visuels | OGL |
 | Hébergement | Vercel |
-| Qualité | ESLint |
+| Qualité du code | ESLint |
 | Versionnement | Git et GitHub |
-
-L'accès à la base de données (ORM ou requêtes directes) sera précisé ici dès que l'équipe l'aura choisi.
+| Automatisation | GitHub Actions |
 
 ## Démarrage rapide
 
@@ -114,39 +124,142 @@ Sur Vercel, les variables se configurent dans Settings, puis Environment Variabl
 
 ## Structure du projet
 
-Structure cible, elle sera ajustée au fil du développement.
+Arborescence actuelle du projet (les dépendances, fichiers générés et fichiers d'environnement locaux sont exclus).
 
 ```text
 s22-apex-stack-otaku-hub/
-├── public/              # Fichiers statiques (images, favicon)
+├── .github/
+│   └── workflows/
+│       ├── lighthouse.yml
+│       └── secret.yml
+├── docs/
+│   ├── brand.md
+│   └── mvp.md
+├── public/       # Fichiers statiques (images, favicon)
+│   ├── mangas/
+│   ├── hero_*.jpg
+│   ├── logo.svg
+│   └── ... (autres ressources graphiques)
 ├── src/
-│   ├── app/             # Pages et routes (App Router)
-│   ├── components/      # Composants réutilisables
-│   └── lib/             # Fonctions utilitaires et accès aux données
-├── .env.example         # Modèle des variables d'environnement
-├── CHANGELOG.md         # Historique des versions
-├── CODE_OF_CONDUCT.md   # Guide de conduite
-├── CONTRIBUTING.md      # Guide de contribution
-└── README.md
+│   ├── app/        # Pages et routes (App Router)
+│   │   ├── a-propos/
+│   │   │   └── page.tsx
+│   │   ├── api/
+│   │   │   ├── auth/
+│   │   │   │   └── [...nextauth]/
+│   │   │   │       └── route.ts
+│   │   │   ├── contact/
+│   │   │   │   └── route.ts
+│   │   │   └── health/
+│   │   │       └── route.ts
+│   │   ├── catalogue/
+│   │   │   ├── [id]/
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
+│   │   ├── connexion/
+│   │   │   ├── actions.ts
+│   │   │   └── page.tsx
+│   │   ├── contact/
+│   │   │   └── page.tsx
+│   │   ├── inscription/
+│   │   │   ├── actions.ts
+│   │   │   └── page.tsx
+│   │   ├── panier/
+│   │   │   └── page.tsx
+│   │   ├── profil/
+│   │   │   └── page.tsx
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── icon.svg
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── components/       # Composants réutilisables
+│   │   ├── ui/
+│   │   │   └── button.tsx
+│   │   ├── AddToCartButton.tsx
+│   │   ├── BoutonAjouterAuPanier.tsx
+│   │   ├── ButtonPrimary.tsx
+│   │   ├── ContactForm.tsx
+│   │   ├── FormulaireConnexion.tsx
+│   │   ├── FormulaireInscription.tsx
+│   │   ├── Footer.tsx
+│   │   ├── HeroUne.tsx
+│   │   ├── InfoPageHero.tsx
+│   │   ├── Aurora.jsx
+│   │   ├── FlexCarousel.jsx
+│   │   ├── FlowingMenu.tsx
+│   │   ├── Menu.jsx
+│   │   ├── ScrollVelocity.tsx
+│   │   └── StaggeredMenu.jsx
+│   ├── fonts/
+│   │   └── KOMIKAX_.ttf
+│   ├── lib/        # Fonctions utilitaires et accès aux données
+│   │   ├── actions/
+│   │   │   └── panier.ts
+│   │   ├── db/
+│   │   │   ├── ERD.md
+│   │   │   ├── index.ts
+│   │   │   ├── schema.ts
+│   │   │   └── seed.ts
+│   │   ├── catalogue.ts
+│   │   ├── panier.ts
+│   │   ├── produits.ts
+│   │   ├── utilisateurs.ts
+│   │   ├── utils.ts
+│   │   └── uuid.ts
+│   ├── auth.ts
+│   └── proxy.ts
+├── .env.example        # Modèle des variables d'environnement
+├── AGENTS.md
+├── CHANGELOG.md        # Historique des versions
+├── CODE_OF_CONDUCT.md        # Guide de conduite
+├── CONTRIBUTING.md       # Guide de contribution
+├── README.md
+├── components.json
+├── drizzle.config.ts
+├── eslint.config.mjs
+├── lighthouserc.json
+├── next.config.ts
+├── package.json
+├── package-lock.json
+└── tsconfig.json
 ```
+
+### Organisation des dossiers
+
+- `src/app/` : pages de l'application et routes API avec Next.js App Router.
+- `src/components/` : composants réutilisables de l'interface.
+- `src/lib/` : logique métier, accès aux données et fonctions utilitaires.
+- `src/lib/db/` : configuration, schéma et initialisation de la base de données.
+- `src/fonts/` : polices locales.
+- `public/` : images, couvertures de mangas, logos et ressources statiques.
+- `docs/` : documentation fonctionnelle et identité visuelle.
+- `.github/workflows/` : automatisations GitHub Actions.
+
 
 ## Déploiement
 
-L'application est déployée sur Vercel, avec une base PostgreSQL sur Neon.
+L'application est déployée sur [Vercel](https://vercel.com/) et utilise une base de données PostgreSQL hébergée sur [Neon](https://neon.tech/).
 
-Checklist de déploiement (à compléter par KazeHolloway) :
+Checklist de déploiement :
 
-- [ ] Projet Vercel relié au dépôt GitHub
-- [ ] Variables d'environnement configurées sur Vercel
-- [ ] Base Neon créée et connectée
-- [ ] URL de production stable notée dans ce README
-- [ ] Aucun secret dans le dépôt
+- [x] Projet Vercel relié au dépôt GitHub
+- [x] Variables d'environnement configurées sur Vercel
+- [x] Base Neon créée et connectée
+- [x] URL de production stable notée dans ce README
+- [x] Aucun secret dans le dépôt
 
 ## Audit Lighthouse
 
-Objectif : au moins 80 en Performance et en Accessibility sur mobile.
+L'application fait l'objet d'un contrôle de qualité avec Lighthouse.
 
-La capture de l'audit sera ajoutée dans le dépôt et liée ici.
+**Objectifs de performance :**
+- Performance : au moins 80/100 sur mobile.
+- Accessibility : au moins 80/100 sur mobile.
+
+Les résultats détaillés et les captures d'écran de l'audit seront ajoutés à cette section après validation de la dernière version de production.
+
+Configuration de l'audit : `lighthouserc.json` et `.github/workflows/lighthouse.yml`.
 
 ## Équipe
 
@@ -154,11 +267,11 @@ Groupe 2 (Apex Stack), Akieni Academy, Cohorte 2.
 
 | Membre | Compte GitHub | Rôle S22 |
 |---|---|---|
-| MASSAMBA BOUESSO Christophe Darly (Kaze) | KazeHolloway | Déploiement, Admin Repo |
-| MBOUSSA Emmanuelito | à compléter | à définir |
-| OKANIA Patience Théo | à compléter | à définir |
-| MOUKOUANGA TOMBET Brissam Josué | à compléter | à définir |
-| NDENDE Christ | à compléter | à définir |
+| MASSAMBA BOUESSO Christophe Darly | [KazeHolloway](https://github.com/KazeHolloway) | Déploiement, Admin Repo |
+| MBOUSSA Emmanuelito | [elyseeMB](https://github.com/elyseeMB) | Rendu et performance, Lead |
+| KOY Jude Airich | [Deekskn](https://github.com/Deekskn) | Auth |
+| OKANIA Patience Théo | [theos1401](https://github.com/theos1401) | Feature 1 |
+| MOUKOUANGA TOMBET Brissam Josué | [BrissamDev](https://github.com/BrissamDev) | Feature 2 |
 
 ## Workflow Git
 
@@ -176,6 +289,6 @@ Le détail est dans [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Liens : Live + Repository + README
 
-- [Lien live](à compléter)
-- [Lien vers le repository](https://github.com/KazeHolloway/s22-apex-stack-otaku-hub)
-- [Lien vers le README](https://kazeholloway.github.io/s22-apex-stack-otaku-hub/)
+- [Application en ligne](https://otaku-hub-apex.vercel.app/)
+- [Repository GitHub](https://github.com/KazeHolloway/s22-apex-stack-otaku-hub)
+- [Documentation README](https://kazeholloway.github.io/s22-apex-stack-otaku-hub/)
