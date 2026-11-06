@@ -14,8 +14,6 @@ function formaterPrix(centimes: number): string {
 export default async function CataloguePage() {
   const produits = await getProduits();
 
-  console.log(produits);
-
   return (
     <ViewTransition enter="page-enter" exit="page-exit" default="none">
       <section className="mx-auto max-w-7xl p-6 pt-40">
