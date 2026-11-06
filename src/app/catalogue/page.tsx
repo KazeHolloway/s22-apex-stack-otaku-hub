@@ -8,10 +8,9 @@ export const revalidate = 60;
 function formaterPrix(centimes: number): string {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",
-    currency: "EUR",
-  }).format(centimes / 100);
+    currency: "XAF",
+  }).format(centimes);
 }
-
 export default async function CataloguePage() {
   const produits = await getProduits();
 

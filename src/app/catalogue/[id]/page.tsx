@@ -13,7 +13,7 @@ function formaterPrix(centimes: number): string {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",
     currency: "XAF",
-  }).format(centimes / 100);
+  }).format(centimes);
 }
 
 export default async function ProduitPage({ params }: Props) {
