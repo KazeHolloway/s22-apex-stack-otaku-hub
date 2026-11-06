@@ -4,9 +4,6 @@ import ContactForm from "@/components/ContactForm";
 import type { Metadata } from "next";
 import Image from "next/image";
 
-import { existsSync } from "node:fs";
-import path from "node:path";
-
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
@@ -15,25 +12,8 @@ export const metadata: Metadata = {
     "Une question sur un manga, une commande ou un retour ? Contacte l'équipe Otaku Hub avec le formulaire de contact.",
 };
 
-function resoudreImageHero(image: string) {
-  const fallback = "/hero_1.jpg";
-  if (!image) return fallback;
-
-  try {
-    const chemin = path.join(
-      process.cwd(),
-      "public",
-      image.replace(/^\/+/, ""),
-    );
-    return existsSync(chemin) ? image : fallback;
-  } catch {
-    return fallback;
-  }
-}
-
 export default function Contact() {
   const produit = PRODUIT_UNE;
-  const image = resoudreImageHero(produit.image);
   return (
     <ViewTransition enter="page-enter" exit="page-exit" default="none">
       <header className="relative h-svh overflow-hidden bg-[#dddee2] px-1 lg:px-[0.46296vw]">
