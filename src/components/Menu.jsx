@@ -10,14 +10,20 @@ const menuItems = [
   { label: "Catalogue", ariaLabel: "View our catalogue", link: "/catalogue" },
   { label: "Panier", ariaLabel: "View your cart", link: "/panier" },
   { label: "Profil", ariaLabel: "View your profile", link: "/profil" },
+  { label: "Inscription", ariaLabel: "Sign up", link: "/inscription" },
   { label: "Connexion", ariaLabel: "Sign in", link: "/connexion" },
   { label: "Contact", ariaLabel: "Get in touch", link: "/contact" },
 ];
 
 const socialItems = [
   { label: "Twitter", link: "https://twitter.com" },
-  { label: "GitHub", link: "https://github.com" },
-  { label: "LinkedIn", link: "https://linkedin.com" },
+  {
+    label: "GitHub",
+    link: "https://github.com/KazeHolloway/s22-apex-stack-otaku-hub",
+  },
+  { label: "LinkedIn", 
+    link: "https://www.linkedin.com/in/christophe-darly-massamba-bouesso-b8041a415/",
+  },
 ];
 
 const lockPage = () => {
