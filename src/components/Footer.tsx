@@ -7,6 +7,7 @@ const NAVIGATION = [
   { label: "Catalogue", href: "/catalogue" },
   { label: "Panier", href: "/panier" },
   { label: "Profil", href: "/profil" },
+  { label: "Inscription", href: "/inscription" },
   { label: "Connexion", href: "/connexion" },
   { label: "À propos", href: "/a-propos" },
   { label: "Contact", href: "/contact" },
@@ -125,6 +126,18 @@ export default function Footer() {
 
         <div className="flex flex-col gap-4 border-t border-black/15 pt-6 text-xs uppercase tracking-[0.15em] text-black/60 sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 Otaku Hub · Apex Stack</p>
+          <p className="normal-case tracking-normal">
+            Certaines couvertures proviennent d&apos;
+            <a
+              href="https://openlibrary.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 transition-colors hover:text-black"
+            >
+              Open Library
+            </a>
+            .
+          </p>
         </div>
       </div>
     </footer>
