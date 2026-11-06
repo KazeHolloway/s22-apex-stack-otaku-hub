@@ -1,6 +1,11 @@
-
+import type { Metadata } from "next";
 import { auth, signOut } from "@/auth";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Mon profil · Otaku Hub",
+  description: "Consultez les informations de votre compte Otaku Hub.",
+};
 
 async function deconnexion() {
   "use server";
@@ -18,43 +23,48 @@ export default async function ProfilPage() {
   const email = session.user.email || "Adresse e-mail non disponible";
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-zinc-950 px-4 py-12 text-white">
-      <section className="w-full max-w-lg rounded-2xl border border-zinc-800 bg-zinc-900 p-8 shadow-xl">
-        <div className="mb-8">
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-zinc-400">
+    <section className="w-full bg-white py-16">
+      <div className="max-w-2xl flex mx-auto flex-col gap-6 p-6 sm:p-8 lg:p-10">
+        <h2 className="max-w-2xl mt-4 text-[clamp(2.25rem,5vw,4rem)] leading-[0.9] font-bold uppercase">
+          Mon profil
+        </h2>
+        <div className="flex flex-col gap-2">
+          <p className="font-mono text-[0.68rem] uppercase tracking-[0.25em] text-black/55">
             Otaku Hub
           </p>
 
-          <h1 className="text-3xl font-bold">
-            Mon profil
-          </h1>
-
-          <p className="mt-2 text-sm text-zinc-400">
+          <p className="text-base text-black/65">
             Consultez les informations de votre compte.
           </p>
         </div>
 
-        <div className="space-y-5">
-          <div>
-            <p className="text-sm text-zinc-400">Nom</p>
-            <p className="mt-1 text-lg font-semibold">{nom}</p>
-          </div>
-
-          <div>
-            <p className="text-sm text-zinc-400">Adresse e-mail</p>
-            <p className="mt-1 break-all text-lg font-semibold">{email}</p>
-          </div>
+        <div className="flex flex-col gap-1">
+          <p className="block font-mono text-[0.68rem] uppercase tracking-[0.25em] text-black/55">
+            Nom
+          </p>
+          <p className="w-full border-0 border-b border-black/10 bg-transparent px-0 py-3 text-base text-black">
+            {nom}
+          </p>
         </div>
 
-        <form action={deconnexion} className="mt-8">
+        <div className="flex flex-col gap-1">
+          <p className="block font-mono text-[0.68rem] uppercase tracking-[0.25em] text-black/55">
+            Adresse e-mail
+          </p>
+          <p className="w-full break-all border-0 border-b border-black/10 bg-transparent px-0 py-3 text-base text-black">
+            {email}
+          </p>
+        </div>
+
+        <form action={deconnexion}>
           <button
             type="submit"
-            className="w-full rounded-lg bg-red-600 px-5 py-3 font-semibold text-white transition hover:bg-red-700"
+            className="group inline-flex w-full items-center justify-center gap-4 bg-[#ef6363] px-6 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:bg-[#fd1818] disabled:cursor-wait disabled:opacity-60 cursor-pointer"
           >
             Se déconnecter
           </button>
         </form>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }

@@ -1,5 +1,7 @@
 import Image from "next/image";
-import { ViewTransition, notFound } from "react";
+import Link from "next/link";
+import { ViewTransition } from "react";
+import { notFound } from "next/navigation";
 import { getProduitParId } from "@/lib/produits";
 import AddToCartButton from "@/components/AddToCartButton";
 
@@ -24,27 +26,45 @@ export default async function ProduitPage({ params }: Props) {
 
   return (
     <ViewTransition enter="page-enter" exit="page-exit" default="none">
-      <section className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2 p-6 py-40">
-        <div className="relative aspect-[2/3] w-full overflow-hidden rounded">
-          <Image
-            src={produit?.image ?? ""}
-            alt={`Couverture de ${produit?.titre}`}
-            fill
-            priority
-            sizes="(min-width: 968px) 50vw, 100vw"
-            className="object-cover"
-          />
-        </div>
+      <section className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:px-[0.46296vw] lg:py-28">
+        <Link
+          href="/catalogue"
+          className="font-mono text-[0.68rem] uppercase tracking-[0.25em] text-black/55 transition-colors hover:text-black"
+        >
+          ← Catalogue
+        </Link>
 
-        <div>
-          <h1 className="text-2xl font-bold">{produit.titre}</h1>
-          <p className="mt-1 text-sm text-gray-600">{produit.auteur}</p>
-          <p className="mt-4">{produit.description}</p>
-          <p className="mt-4 text-lg font-semibold">
-            {formaterPrix(produit.prixCentimes)}
-          </p>
+        <div className="mt-10 grid gap-10 md:grid-cols-[minmax(0,0.9fr)_1.1fr] lg:gap-[6vw]">
+          <div className="relative aspect-[2/3] w-full overflow-hidden border border-black/10 bg-[#f8f8f8]">
+            <Image
+              src={produit.image}
+              alt={`Couverture de ${produit.titre}`}
+              fill
+              priority
+              sizes="(min-width: 968px) 45vw, 100vw"
+              className="object-cover"
+            />
+          </div>
 
-          <AddToCartButton productId={produit.id} />
+          <div className="flex flex-col">
+            <h1 className="text-[clamp(2.5rem,7vw,2rem)] leading-[0.85] font-bold uppercase tracking-[-0.04em]">
+              {produit.titre}
+            </h1>
+
+            <p className="mt-4 font-mono text-[0.68rem] uppercase tracking-[0.25em] text-black/55">
+              {produit.auteur}
+            </p>
+
+            <p className="mt-8 max-w-xl text-base leading-relaxed text-black/65">
+              {produit.description}
+            </p>
+
+            <p className="mt-10 border-t border-black/10 pt-6 text-2xl font-bold text-black">
+              {formaterPrix(produit.prixCentimes)}
+            </p>
+
+            <AddToCartButton productId={produit.id} />
+          </div>
         </div>
       </section>
     </ViewTransition>
