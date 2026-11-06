@@ -15,6 +15,8 @@ function formaterPrix(centimes: number): string {
 export default async function CataloguePage() {
   const produits = await getProduits();
 
+  console.log(produits);
+
   return (
     <ViewTransition enter="page-enter" exit="page-exit" default="none">
       <section className="mx-auto max-w-7xl p-6 pt-40">
@@ -29,7 +31,7 @@ export default async function CataloguePage() {
                   <Image
                     fill
                     sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    src={"/hero_4.jpg"}
+                    src={produit.image}
                     alt={`Couverture de ${produit.titre}`}
                     className="w-full h-48 object-cover"
                   />
