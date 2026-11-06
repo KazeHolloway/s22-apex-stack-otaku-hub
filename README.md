@@ -62,7 +62,8 @@ Chaque page utilise la stratégie adaptée à son contenu et à ses données.
 | Stratégie | Pages | Justification |
 |---|---|---|
 | SSG (génération statique) | Accueil, à propos, contact | Ces pages sont pré-générées au build, car leur contenu est public et change peu. |
-| ISR (régénération incrémentale) | Catalogue et fiches produit | Les données viennent du catalogue en base. Les pages sont régénérées au plus toutes les 60 secondes pour tenir compte des changements sans refaire tout le build. |
+| ISR (régénération incrémentale) | Catalogue | Les données viennent du catalogue en base. La page est régénérée au plus toutes les 60 secondes pour tenir compte des changements sans refaire tout le build. |
+| Rendu à la demande | Fiches produit | Le code déclare `revalidate = 60`, mais en production la réponse n'est pas mise en cache (`X-Vercel-Cache: MISS`, `no-store`) : la page est générée à chaque visite. La vraie mise en cache ISR reste à faire (voir pistes d'amélioration). |
 | SSR (rendu serveur) | Panier, profil, connexion, inscription | Ces pages vérifient la session et adaptent leur contenu ou leur redirection à l'utilisateur connecté. |
 
 La protection des routes `/panier` et `/profil` est assurée par `src/proxy.ts` (le proxy est le nouveau nom du middleware dans Next.js 16).
@@ -284,6 +285,7 @@ Pistes d'amélioration :
 - Bouton Menu : icône burger qui se transforme en croix.
 - Mode clair et sombre.
 - Conversion correcte euro vers FCFA.
+- Fiches produit : obtenir une vraie mise en cache ISR (aujourd'hui rendues à chaque visite).
 - Correction de l'avertissement `metadataBase` et suppression de l'option `ignoreBuildErrors`.
 
 ## Équipe
