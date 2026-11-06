@@ -22,6 +22,7 @@ const komikaAxis = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://otaku-hub-apex.vercel.app"),
   applicationName: "Otaku Hub",
   title: {
     default: "Otaku Hub | Mangas et éditions collectors",
