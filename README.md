@@ -191,7 +191,6 @@ s22-apex-stack-otaku-hub/
 │   │   │   └── button.tsx
 │   │   ├── AddToCartButton.tsx
 │   │   ├── BoutonAjouterAuPanier.tsx
-│   │   ├── ButtonPrimary.tsx
 │   │   ├── ContactForm.tsx
 │   │   ├── FormulaireConnexion.tsx
 │   │   ├── FormulaireInscription.tsx
@@ -305,7 +304,6 @@ Pistes d'amélioration :
 - Mode clair et sombre.
 - Conversion correcte euro vers FCFA.
 - Fiches produit : obtenir une vraie mise en cache ISR (aujourd'hui rendues à chaque visite).
-- Suppression de l'option `ignoreBuildErrors` et correction des erreurs de types qu'elle masque.
 - Politique de sécurité du contenu (CSP) à mettre en place avec des tests sur GSAP et les scripts de Next.
 
 ## Équipe
