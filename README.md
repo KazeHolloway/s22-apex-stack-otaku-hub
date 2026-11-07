@@ -1,6 +1,6 @@
 # Otaku Hub - Apex Stack (S22)
 
-Site de démonstration d'une boutique de mangas et de jeux vidéo, construit avec Next.js, Auth.js et déployé sur Vercel.
+Site de démonstration d'une boutique de mangas, construit avec Next.js, Auth.js et déployé sur Vercel.
 
 Projet de groupe réalisé dans le cadre du livrable de Semaine 22 d'Akieni Academy, Cohorte 2.
 
@@ -8,7 +8,11 @@ Projet de groupe réalisé dans le cadre du livrable de Semaine 22 d'Akieni Acad
 
 - URL de production : [Otaku Hub](https://otaku-hub-apex.vercel.app/)
 - Route de santé : [/api/health](https://otaku-hub-apex.vercel.app/api/health)
+- Compte de test : `demo@otaku-hub.test` / `Demo1234!`
 
+QR code vers la démo en ligne
+
+![QR code vers la démo en ligne](docs/images/qrcode-otaku-stack.png)
 
 ## Sommaire
 
@@ -25,6 +29,7 @@ Projet de groupe réalisé dans le cadre du livrable de Semaine 22 d'Akieni Acad
     - [Organisation des dossiers](#organisation-des-dossiers)
   - [Déploiement](#déploiement)
   - [Audit Lighthouse](#audit-lighthouse)
+  - [Limites connues et pistes d'amélioration](#limites-connues-et-pistes-damélioration)
   - [Équipe](#équipe)
   - [Workflow Git](#workflow-git)
   - [Documentation du dépôt](#documentation-du-dépôt)
@@ -57,8 +62,11 @@ Chaque page utilise la stratégie adaptée à son contenu et à ses données.
 | Stratégie | Pages | Justification |
 |---|---|---|
 | SSG (génération statique) | Accueil, à propos, contact | Ces pages sont pré-générées au build, car leur contenu est public et change peu. |
-| ISR (régénération incrémentale) | Catalogue et fiches produit | Les données viennent du catalogue en base. Les pages sont régénérées au plus toutes les 60 secondes pour tenir compte des changements sans refaire tout le build. |
+| ISR (régénération incrémentale) | Catalogue | Les données viennent du catalogue en base. La page est régénérée au plus toutes les 60 secondes pour tenir compte des changements sans refaire tout le build. |
+| Rendu à la demande | Fiches produit | Le code déclare `revalidate = 60`, mais en production la réponse n'est pas mise en cache (`X-Vercel-Cache: MISS`, `no-store`) : la page est générée à chaque visite. La vraie mise en cache ISR reste à faire (voir pistes d'amélioration). |
 | SSR (rendu serveur) | Panier, profil, connexion, inscription | Ces pages vérifient la session et adaptent leur contenu ou leur redirection à l'utilisateur connecté. |
+
+La protection des routes `/panier` et `/profil` est assurée par `src/proxy.ts` (le proxy est le nouveau nom du middleware dans Next.js 16).
 
 Les routes API ne sont pas des pages et ne sont donc pas incluses dans ce tableau.
 
@@ -133,15 +141,20 @@ s22-apex-stack-otaku-hub/
 │       ├── lighthouse.yml
 │       └── secret.yml
 ├── docs/
+│   ├── images/
+│   │   └── qrcode-otaku-stack.png
+│   ├── lighthouse/
+│   │   ├── lighthouse-bureau.png
+│   │   └── lighthouse-mobile.png
 │   ├── brand.md
 │   └── mvp.md
-├── public/       # Fichiers statiques (images, favicon)
+├── public/                   # Fichiers statiques (images, favicon)
 │   ├── mangas/
 │   ├── hero_*.jpg
 │   ├── logo.svg
 │   └── ... (autres ressources graphiques)
 ├── src/
-│   ├── app/        # Pages et routes (App Router)
+│   ├── app/                  # Pages et routes (App Router)
 │   │   ├── a-propos/
 │   │   │   └── page.tsx
 │   │   ├── api/
@@ -173,12 +186,11 @@ s22-apex-stack-otaku-hub/
 │   │   ├── icon.svg
 │   │   ├── layout.tsx
 │   │   └── page.tsx
-│   ├── components/       # Composants réutilisables
+│   ├── components/           # Composants réutilisables
 │   │   ├── ui/
 │   │   │   └── button.tsx
 │   │   ├── AddToCartButton.tsx
 │   │   ├── BoutonAjouterAuPanier.tsx
-│   │   ├── ButtonPrimary.tsx
 │   │   ├── ContactForm.tsx
 │   │   ├── FormulaireConnexion.tsx
 │   │   ├── FormulaireInscription.tsx
@@ -193,7 +205,7 @@ s22-apex-stack-otaku-hub/
 │   │   └── StaggeredMenu.jsx
 │   ├── fonts/
 │   │   └── KOMIKAX_.ttf
-│   ├── lib/        # Fonctions utilitaires et accès aux données
+│   ├── lib/                  # Fonctions utilitaires et accès aux données
 │   │   ├── actions/
 │   │   │   └── panier.ts
 │   │   ├── db/
@@ -209,11 +221,12 @@ s22-apex-stack-otaku-hub/
 │   │   └── uuid.ts
 │   ├── auth.ts
 │   └── proxy.ts
-├── .env.example        # Modèle des variables d'environnement
+├── .env.example              # Modèle des variables d'environnement
+├── .gitignore
 ├── AGENTS.md
-├── CHANGELOG.md        # Historique des versions
+├── CHANGELOG.md              # Historique des versions
 ├── CODE_OF_CONDUCT.md        # Guide de conduite
-├── CONTRIBUTING.md       # Guide de contribution
+├── CONTRIBUTING.md           # Guide de contribution
 ├── README.md
 ├── components.json
 ├── drizzle.config.ts
@@ -253,13 +266,45 @@ Checklist de déploiement :
 
 L'application fait l'objet d'un contrôle de qualité avec Lighthouse.
 
-**Objectifs de performance :**
+**Critères de validation :**
 - Performance : au moins 80/100 sur mobile.
 - Accessibility : au moins 80/100 sur mobile.
 
-Les résultats détaillés et les captures d'écran de l'audit seront ajoutés à cette section après validation de la dernière version de production.
+Mesures sur la production ([otaku-hub-apex.vercel.app](https://otaku-hub-apex.vercel.app/)), faites le 7 novembre 2026, avec Lighthouse sur [PageSpeed Insights](https://pagespeed.web.dev/analysis/https-otaku-hub-apex-vercel-app-inscription/puaf0m8j47?form_factor=mobile) :
+
+| Appareil | Performance | Accessibility | Best Practices | SEO | Agentic Browsing |
+|---|---|---|---|---|---|
+| Mobile | 100 | 100 | 100 | 100 | 2/2 |
+| Bureau | 100 | 100 | 100 | 100 | 2/2 |
+
+Le score de performance varie d'un test à l'autre selon le réseau et la machine. Dans l'onglet Lighthouse du navigateur, Best Practices peut afficher 96 à cause d'un message du panneau Issues de Chrome sur la politique de sécurité (CSP), absent des autres mesures ([PageSpeed Insights](https://pagespeed.web.dev/), ligne de commande.)
+
+**Captures d'audit Lighthouse :**
+
+![Lighthouse mobile](docs/lighthouse/lighthouse-mobile.png)
+
+![Lighthouse bureau](docs/lighthouse/lighthouse-bureau.png)
 
 Configuration de l'audit : `lighthouserc.json` et `.github/workflows/lighthouse.yml`.
+
+## Limites connues et pistes d'amélioration
+
+Limites actuelles :
+- Aucun paiement ni commande réelle, c'est un site de démonstration.
+- Le formulaire de contact n'enregistre rien.
+- Les prix sont stockés en centimes d'euro, leur affichage en FCFA est à corriger.
+- Pas de récupération de mot de passe, pas d'interface d'administration, pas de tests automatisés.
+- Le mot de passe du compte de démonstration est public et la base est partagée.
+
+Pistes d'amélioration :
+- Inscription : bouton pour afficher ou masquer le mot de passe, champ de confirmation, redirection vers la page de connexion.
+- Notifications (toasts) à l'ajout et au retrait d'un article du panier.
+- Responsive : plus de points de rupture pour tablettes et petits téléphones (menu, logo, marges).
+- Bouton Menu : icône burger qui se transforme en croix.
+- Mode clair et sombre.
+- Conversion correcte euro vers FCFA.
+- Fiches produit : obtenir une vraie mise en cache ISR (aujourd'hui rendues à chaque visite).
+- Politique de sécurité du contenu (CSP) à mettre en place avec des tests sur GSAP et les scripts de Next.
 
 ## Équipe
 
