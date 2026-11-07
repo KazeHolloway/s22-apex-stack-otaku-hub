@@ -11,7 +11,7 @@ Auteurs (comptes GitHub) :
 - theos1401 : OKANIA Patience Théo
 - BrissamDev : MOUKOUANGA TOMBET Brissam Josué
 
-## [Non publié]
+## [1.0.0] - 2026-11-07
 
 ### Samedi 7 novembre 2026
 
