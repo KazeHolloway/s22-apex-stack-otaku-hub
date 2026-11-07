@@ -456,7 +456,7 @@ export const StaggeredMenu = ({
               <p className="font-komika text-2xl uppercase leading-none sm:text-3xl">
                 Otaku Hub
               </p>
-              <p className="mt-2 text-sm text-black/60">
+              <p className="mt-2 text-sm text-black/75">
                 Mangas et éditions collectors
               </p>
             </div>
