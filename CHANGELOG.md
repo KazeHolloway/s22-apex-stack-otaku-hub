@@ -13,6 +13,17 @@ Auteurs (comptes GitHub) :
 
 ## [1.0.0] - 2026-11-07
 
+### Du 7 au 9 novembre 2026 (bug bash et finitions)
+
+#### Ajouté
+- Bug bash : 20 issues ouvertes sur les dépôts de six autres groupes, avec les étapes pour reproduire (KazeHolloway, elyseeMB)
+- Fichier `docs/bug-bash.md` : liste des issues par groupe et récapitulatif par compte (KazeHolloway)
+- Section Bug bash, liens vers le tableau de backlog GitHub Projects et vers le graphique Insights dans le README (KazeHolloway)
+- Mention de NDENDE Christ dans l'équipe, avec la précision qu'il n'a eu aucune contribution (KazeHolloway)
+
+#### Modifié
+- Fusion de la documentation dans `dev` (PR #85) puis livraison de `dev` vers `main` (PR #86) (KazeHolloway)
+
 ### Samedi 7 novembre 2026
 
 #### Ajouté
