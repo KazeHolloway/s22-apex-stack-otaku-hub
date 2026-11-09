@@ -8,7 +8,7 @@ Projet de groupe réalisé dans le cadre du livrable de Semaine 22 d'Akieni Acad
 
 - URL de production : [Otaku Hub](https://otaku-hub-apex.vercel.app/)
 - Route de santé : [/api/health](https://otaku-hub-apex.vercel.app/api/health)
-- Compte de test : `demo@otaku-hub.test` / `Demo1234!`
+- Compte de test => **email** : `demo@otaku-hub.test` / **password** : `Demo1234!`
 
 QR code vers la démo en ligne
 
@@ -31,6 +31,7 @@ QR code vers la démo en ligne
   - [Audit Lighthouse](#audit-lighthouse)
   - [Limites connues et pistes d'amélioration](#limites-connues-et-pistes-damélioration)
   - [Équipe](#équipe)
+  - [Bug bash](#bug-bash)
   - [Workflow Git](#workflow-git)
   - [Documentation du dépôt](#documentation-du-dépôt)
   - [Liens : Live + Repository + README](#liens--live--repository--readme)
@@ -317,6 +318,11 @@ Groupe 2 (Apex Stack), Akieni Academy, Cohorte 2.
 | KOY Jude Airich | [Deekskn](https://github.com/Deekskn) | Auth |
 | OKANIA Patience Théo | [theos1401](https://github.com/theos1401) | Feature 1 |
 | MOUKOUANGA TOMBET Brissam Josué | [BrissamDev](https://github.com/BrissamDev) | Feature 2 |
+| NDENDE Christ | Non communiqué | Aucune contribution : absent pendant toute la durée du projet |
+
+## Bug bash
+
+Le groupe 2 a ouvert 20 issues sur les dépôts de six autres groupes, avec les étapes pour reproduire chaque problème. Le détail, avec les liens de chaque issue, est dans [docs/bug-bash.md](docs/bug-bash.md).
 
 ## Workflow Git
 
@@ -330,7 +336,10 @@ Le détail est dans [CONTRIBUTING.md](CONTRIBUTING.md).
 
 - [Guide de contribution](CONTRIBUTING.md)
 - [Guide de conduite](CODE_OF_CONDUCT.md)
-- [Historique des versions](CHANGELOG.md)
+- [Historique des versions (CHANGELOG)](CHANGELOG.md)
+- [Bug bash](docs/bug-bash.md)
+- [Backlog du projet - Tableau des tâches (GitHub Projects)](https://github.com/users/KazeHolloway/projects/1)
+- [Graphique d'avancement (Insights)](https://github.com/users/KazeHolloway/projects/1/insights/1)
 
 ## Liens : Live + Repository + README
 
